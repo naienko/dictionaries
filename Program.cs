@@ -1,58 +1,43 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace dictionaries
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
- 		// Now, we are going to rebuild the structure of our data. Instead of one dictionary with key value pairs for words and definitions. We want to track more than just the word and its definition, so we are going to build a list of dictionaries.
-            
-            // Make a new list 
-            List<Dictionary<string, string>> dictionaryOfWords = new List<Dictionary<string, string>>();
+            Dictionary<string, string> stocks = new Dictionary<string, string>();
+            stocks.Add("GM", "General Motors");
+            stocks.Add("CAT", "Caterpillar");
+            stocks.Add("KM", "Kimbrell's Furniture");
+            stocks.Add("AMZN", "Amazon");
 
-            // We want to track the following about each word: word, definition, part of speech, example sentence
+            List<Dictionary<string, double>> purchases = new List<Dictionary<string, double>>();
+            purchases.Add(new Dictionary<string, double>(){ {"GM", 234.12} });
+            purchases.Add(new Dictionary<string, double>(){ {"KM", 2348.32} });
+            purchases.Add(new Dictionary<string, double>(){ {"GM", 123.34} });
+            purchases.Add(new Dictionary<string, double>(){ {"AMZN", 23.42} });
 
-            /*
-                Example of one dictionary in the list:
-                {
-                    "word": "excited",
-                    "definition": "having, showing, or characterized by a heightened state of energy, enthusiasm, eagerness",
-                    "part of speech": "adjective",
-                    "example sentence": "I am excited to learn C#!"
-                }            
-             */
-            
-            // create dictionary to represent a few word
-            Dictionary<string, string> excitedWord = new Dictionary<string, string>();
-			excitedWord.Add("word", "excited");
-			excitedWord.Add("definition", "having, showing, or characterized by a heightened state of energy, enthusiasm, eagerness");
-        	excitedWord.Add("part of speech", "adjective");
-			excitedWord.Add("example sentence", "I am excited to learn C#!");
+            Dictionary<string, double> stockReport = new Dictionary<string, double>();
 
-            // Add dictionaries to your list
-            // create another dictionary and add that to the list
+            foreach (Dictionary<string, double> purchase in purchases) {
+                foreach (KeyValuePair<string, double> stock in purchase) {
+                    string stockCompany = stocks[stock.Key];
+                    if (stockReport.ContainsKey(stockCompany)) {
+                        double currentStockValue = stockReport[stockCompany];
+                        double newStockValue = currentStockValue + stock.Value;
+                        stockReport[stockCompany] = newStockValue;
 
-			dictionaryOfWords.Add(excitedWord);
-			
-            // loop over your list of dictionaries and output the data
-
-            /*
-            Example output for one word in the list of dictionaries:
-                word: excited
-                definition: having, showing, or characterized by a heightened state of energy, enthusiasm, eagerness
-                part of speech: adjective
-                example sentence: I am excited to learn C#!
-             */
-
-            // iterate list
-            foreach (Dictionary<string, string> word in dictionaryOfWords) {
-                // iterate key value pair of dictionary
-                foreach (KeyValuePair<string, string> data in word) {
-                    Console.WriteLine($"{data.Key}: {data.Value}");
+                        //stockReport[stockCompany] = stockReport[stockCompany] + stock.Value;
+                    } else {
+                        stockReport.Add(stockCompany, stock.Value);
+                    }
                 }
-				Console.WriteLine("");
+            };
+
+            foreach(KeyValuePair<string, double> item in stockReport) {
+                Console.WriteLine($"The position in {item.Key} is worth {item.Value}");
             }
         }
     }
