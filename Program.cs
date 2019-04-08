@@ -7,41 +7,21 @@ namespace dictionaries
     {
         static void Main(string[] args)
         {
-			List<string> planetList = new List<string>(){"Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto"};
-
-			List<Dictionary<string, string>> planetProbes = new List<Dictionary<string, string>>();
-			planetProbes.Add(new Dictionary<string, string>(){ {"Mercury", "Mariner 10" } });
-			planetProbes.Add(new Dictionary<string, string>(){ {"Mercury", "MESSENGER" } });
-
-			planetProbes.Add(new Dictionary<string, string>(){ {"Venus", "Akatsuki" } });
-			planetProbes.Add(new Dictionary<string, string>(){ {"Venus", "IKAROS" } });
-			planetProbes.Add(new Dictionary<string, string>(){ {"Venus", "MESSENGER" } });
-
-			planetProbes.Add(new Dictionary<string, string>(){ {"Mars", "Dawn" } });
-			planetProbes.Add(new Dictionary<string, string>(){ {"Mars", "MAVEN" } });
-
-			planetProbes.Add(new Dictionary<string, string>(){ {"Jupiter", "Voyager 2" } });
-			planetProbes.Add(new Dictionary<string, string>(){ {"Jupiter", "Cassini" } });
-			planetProbes.Add(new Dictionary<string, string>(){ {"Jupiter", "Juno" } });
-
-			planetProbes.Add(new Dictionary<string, string>(){ {"Saturn", "Voyager 2" } });
-			planetProbes.Add(new Dictionary<string, string>(){ {"Saturn", "Cassini" } });
-
-			planetProbes.Add(new Dictionary<string, string>(){ {"Uranus", "Voyager 2" } });
-
-			planetProbes.Add(new Dictionary<string, string>(){ {"Neptune", "Voyager 2" } });
-
-			planetProbes.Add(new Dictionary<string, string>(){ {"Pluto", "New Horizons" } });
+			Dictionary<string, List<string>> idioms = new Dictionary<string, List<string>>();
+			idioms.Add("Penny", new List<string> { "A", "penny", "for", "your", "thoughts" });
+			idioms.Add("Injury", new List<string> { "Add", "insult", "to", "injury" });
+			idioms.Add("Moon", new List<string> { "Once", "in", "a", "blue", "moon" });
+			idioms.Add("Grape", new List<string> { "I", "heard", "it", "through", "the", "grapevine" });
+			idioms.Add("Murder", new List<string> { "Kill", "two", "birds", "with", "one", "stone" });
+			idioms.Add("Limbs", new List<string> { "It", "costs", "an", "arm", "and", "a", "leg" });
+			idioms.Add("Grain", new List<string> { "Take","what","someone","says","with","a","grain","of","salt" });
+			idioms.Add("Fences", new List<string> { "I'm", "on", "the", "fence", "about", "it" });
+			idioms.Add("Sheep", new List<string> { "Pulled", "the", "wool", "over", "his", "eyes" });
+			idioms.Add("Lucifer", new List<string> { "Speak", "of", "the", "devil" });
 
 
-			foreach (string planet in planetList) {
-				List<string> matchingProbes = new List<string>();
-				foreach(Dictionary<string, string> probe in planetProbes) {
-					if (probe.ContainsKey(planet)) {
-						matchingProbes.Add(probe[planet]);
-					} 
-				}
-				Console.WriteLine($"{planet}: {String.Join(", ", matchingProbes)}");
+			foreach (List<string> item in idioms) {
+				Console.WriteLine($"{String.Join(" ", item.Value)}");		
 			}
         }
     }

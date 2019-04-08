@@ -28,6 +28,8 @@ namespace dictionaries
                         double currentStockValue = stockReport[stockCompany];
                         double newStockValue = currentStockValue + stock.Value;
                         stockReport[stockCompany] = newStockValue;
+
+                        //stockReport[stockCompany] = stockReport[stockCompany] + stock.Value;
                     } else {
                         stockReport.Add(stockCompany, stock.Value);
                     }
