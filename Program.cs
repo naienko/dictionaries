@@ -19,9 +19,8 @@ namespace dictionaries
 			idioms.Add("Sheep", new List<string> { "Pulled", "the", "wool", "over", "his", "eyes" });
 			idioms.Add("Lucifer", new List<string> { "Speak", "of", "the", "devil" });
 
-
-			foreach (List<string> item in idioms) {
-				Console.WriteLine($"{String.Join(" ", item.Value)}");		
+			foreach (KeyValuePair<string, List<string>> item in idioms) {
+				Console.WriteLine($"{item.Key}: {String.Join(" ", item.Value)}");		
 			}
         }
     }
